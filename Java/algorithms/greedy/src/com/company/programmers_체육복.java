@@ -1,33 +1,42 @@
 package com.company;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class programmers_체육복 {
 
     public static int solution(int n, int[] lost, int[] reserve) {
 
+        int[] people = new int[5];
+        System.out.println("people[0] = " + people[0]);
+        System.out.println("people[1] = " + people[1]);
+
         int answer = n - lost.length;
+
+        Arrays.sort(lost);
+        Arrays.sort(reserve);
 
         for (int i = 0; i < lost.length; i++) {
             for (int j = 0; j < reserve.length; j++) {
                 if (lost[i] == reserve[j]) {
-                    lost[i] = -1;
-                    reserve[j] = -1;
+                    lost[i] = -100;
+                    reserve[j] = -1000;
 
                     answer++;
                     break;
                 }
             }
+        }
+        for (int i = 0; i < lost.length; i++) {
             for (int j = 0; j < reserve.length; j++) {
-                if (lost[i] != -1 && lost[i] == reserve[j] + 1) {
-                    lost[i] = -1;
-                    reserve[j] = -1;
+                if (lost[i] == reserve[j] + 1) {
+                    lost[i] = -100;
+                    reserve[j] = -1000;
                     answer++;
+                    break;
                 }
 
-                if (lost[i] != -1 && lost[i] == reserve[j] - 1) {
-                    lost[i] = -1;
-                    reserve[j] = -1;
+                if (lost[i] == reserve[j] - 1) {
+                    lost[i] = -100;
+                    reserve[j] = -1000;
                     answer++;
                 }
             }
