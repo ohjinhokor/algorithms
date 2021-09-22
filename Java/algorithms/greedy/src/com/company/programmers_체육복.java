@@ -5,10 +5,6 @@ public class programmers_체육복 {
 
     public static int solution(int n, int[] lost, int[] reserve) {
 
-        int[] people = new int[5];
-        System.out.println("people[0] = " + people[0]);
-        System.out.println("people[1] = " + people[1]);
-
         int answer = n - lost.length;
 
         Arrays.sort(lost);
