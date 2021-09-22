@@ -4,7 +4,6 @@ import java.util.Arrays;
 public class programmers_체육복 {
 
     public static int solution(int n, int[] lost, int[] reserve) {
-
         int answer = n - lost.length;
 
         Arrays.sort(lost);
