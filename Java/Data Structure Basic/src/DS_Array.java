@@ -24,7 +24,7 @@ public class DS_Array {
         list1.add(1);
         list1.add(2);
         System.out.println("====get====");
-        System.out.println(list1.get(0));
+        System.out.println(list1.get(1));
 
         list1.remove(0);
         System.out.println("====get====");
