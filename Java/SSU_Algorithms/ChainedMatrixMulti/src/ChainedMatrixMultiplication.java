@@ -10,6 +10,7 @@ public class ChainedMatrixMultiplication {
         System.out.print("\n가장 빠른 행렬 곱셈 방법 : ");
         order(1,6);
         System.out.println("");
+
     }
 
     public static int minmult(int n, final int d[], int P[][]){
@@ -40,6 +41,7 @@ public class ChainedMatrixMultiplication {
                         if(M[i][j]> M[i][k]+M[k+1][j] + d[i-1]*d[k]*d[j]){
                             M[i][j] = M[i][k]+M[k+1][j] + d[i-1]*d[k]*d[j];
                             P[i][j] = k;
+
                         }
                     }
                 }
