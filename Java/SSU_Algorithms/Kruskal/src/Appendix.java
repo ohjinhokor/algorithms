@@ -1,21 +1,21 @@
 class Appendix {
-    final int n = 5;
-    int index;
-    int set_pointer;
+    final static int n = 5;
+    static NodeType[] universe = new NodeType[n + 1];
 
-    class NodeType{
+    static class NodeType{
         int parent;
         int depth;
     }
 
-    NodeType[] universe = new NodeType[n + 1];
-
-    public void makeSet(int i){
-        universe[i].parent = i;
-        universe[i].depth =0;
+    private static void makeSet(int i){
+        for(int j=0; j<=n; j++){
+            universe[j] = new NodeType();
+            universe[j].parent = j;
+            universe[j].depth = 0;
+        }
     }
 
-    public int find(int i){
+    public static int find(int i){
         int j;
         j=i;
         while(universe[j].parent!=j){
@@ -24,7 +24,7 @@ class Appendix {
         return j;
     }
 
-    public void merge(int p, int q){
+    public static void merge(int p, int q){
         if(universe[p].depth == universe[q].depth){
             universe[p].depth = universe[p].depth+1;
             universe[q].parent = p;
@@ -35,7 +35,7 @@ class Appendix {
         }
     }
 
-    public boolean equal(int p, int q){
+    public static boolean equal(int p, int q){
         if(p==q){
             return true;
         }else{
@@ -43,7 +43,7 @@ class Appendix {
         }
     }
 
-    public void initial(int n){
+    public static void initial(int n){
         int i;
         for(i=1; i<=n; i++){
             makeSet(i);
