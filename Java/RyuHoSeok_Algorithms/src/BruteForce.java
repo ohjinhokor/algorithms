@@ -21,7 +21,11 @@ public class BruteForce {
     static void rec_func(int k) {
         if (k == M + 1) { // 다 골랐다!
             // selected[1...M] 배열이 새롭게 탐색된 결과
-            for (int i = 1; i <= M; i++) sb.append(selected[i]).append(' ');
+            for (int i = 1; i <= M; i++) {
+                sb.append(selected[i]).append(' ');
+                System.out.println("selected[" + i + "]" + ": " + selected[i]);
+                System.out.println("------------");
+            }
             sb.append('\n');
         } else {
             for (int cand = 1; cand <= N; cand++) {
