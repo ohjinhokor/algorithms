@@ -1,50 +1,44 @@
 import java.io.*;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
-public class BruteForce {
-
+public class BaekJoon1181 {
+    static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static void input() {
-        FastReader scan = new FastReader();
-        N = scan.nextInt();
-        M = scan.nextInt();
-        selected = new int[M + 1];
+    static class MyComparator implements Comparator<String> {
+        @Override
+        public int compare(String lhs, String rhs) {
+            if (lhs.length() != rhs.length())
+                return lhs.length() - rhs.length();
+            return lhs.compareTo(rhs);
+        }
     }
 
-    static int N, M;
-    static int[] selected;
+    static int N;
+    static String[] a;
 
-    // Recurrence Function (재귀 함수)
-    // 만약 M 개를 전부 고름   => 조건에 맞는 탐색을 한 가지 성공한 것!
-    // 아직 M 개를 고르지 않음 => k 번째부터 M번째 원소를 조건에 맞게 고르는 모든 방법을 시도한다.
-    static void rec_func(int k) {
-        if (k == M + 1) { // 다 골랐다!
-            // selected[1...M] 배열이 새롭게 탐색된 결과
-            for (int i = 1; i <= M; i++) {
-                sb.append(selected[i]).append(' ');
-//                System.out.println("selected[" + i + "]" + ": " + selected[i]);
-//                System.out.println("------------");
-            }
-            sb.append('\n');
-        } else {
-            for (int cand = 1; cand <= N; cand++) {
-                // k 번째에 cand 가 올 수 있으면
-                selected[k] = cand;
-
-                // k+1 번부터 M 번까지 잘 채워주는 함수를 호출해준다.
-                rec_func(k + 1);
-                selected[k] = 0;
-            }
+    static void input() {
+        N = scan.nextInt();
+        a = new String[N];
+        for (int i = 0; i < N; i++) {
+            a[i] = scan.next();
         }
+    }
+
+    static void pro() {
+        Arrays.sort(a, new MyComparator());
+        for (int i = 0; i < N; i++) {
+            if (i == 0 || a[i].compareTo(a[i - 1]) != 0)
+                sb.append(a[i]).append('\n');
+        }
+        System.out.println(sb.toString());
     }
 
     public static void main(String[] args) {
         input();
-
-        // 1 번째 원소부터 M 번째 원소를 조건에 맞는 모든 방법을 찾아줘
-        rec_func(1);
-        System.out.println(sb.toString());
+        pro();
     }
 
 
@@ -94,4 +88,3 @@ public class BruteForce {
         }
     }
 }
-
