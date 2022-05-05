@@ -9,30 +9,42 @@ public class BinarySearchBaekJoon7795 {
     static int[] A, B;
 
     static void input() {
-        N = scan.nextInt();
-        M = scan.nextInt();
-        A = new int[N + 1];
-        B = new int[M + 1];
-        for (int i = 1; i <= N; i++) {
-            A[i] = scan.nextInt();
-        }
-        for (int i = 1; i <= M; i++) {
-            B[i] = scan.nextInt();
-        }
+//        N = scan.nextInt();
+//        M = scan.nextInt();
+//        A = new int[N + 1];
+//        B = new int[M + 1];
+//        for (int i = 1; i <= N; i++) {
+//            A[i] = scan.nextInt();
+//        }
+//        for (int i = 1; i <= M; i++) {
+//            B[i] = scan.nextInt();
+//        }
     }
 
-    static int lower_bound(int[] A, int L, int R, int X) {
-        // A[L...R] 에서 X 미만의 수 중 제일 오른쪽 인덱스를 return 하는 함수
-        // 그런 게 없다면 L - 1 을 return 한다
+    static int lower_bound(int[] array, int L, int R, int X) {
+//        // A[L...R] 에서 X 미만의 수 중 제일 오른쪽 인덱스를 return 하는 함수
+//        // 그런 게 없다면 L - 1 을 return 한다
+//
+//        int res = L - 1;  // 만약 A[L...R] 중 X 이하의 수가 없다면 L - 1 을 return 한다.
+//        while (L <= R) {
+//            int mid = (L + R) / 2;
+//            if (A[mid] < X) {
+//                res = mid;
+//                L = mid + 1;
+//            } else {
+//                R = mid - 1;
+//            }
+//        }
+//        return res;
 
-        int res = L - 1;  // 만약 A[L...R] 중 X 이하의 수가 없다면 L - 1 을 return 한다.
+        int res = L - 1;
         while (L <= R) {
-            int mid = (L + R) / 2;
-            if (A[mid] < X) {
-                res = mid;
-                L = mid + 1;
-            } else {
+            int mid = L + R / 2;
+            if (array[mid] > X) {
                 R = mid - 1;
+            } else {
+                L = mid +1;
+                res = mid;
             }
         }
         return res;
@@ -51,9 +63,16 @@ public class BinarySearchBaekJoon7795 {
     }
 
     public static void main(String[] args) {
+//        int TT;
+//        TT = scan.nextInt();
+//        for (int tt = 1; tt <= TT; tt++) {
+//            input();
+//            pro();
+//        }
+
         int TT;
         TT = scan.nextInt();
-        for (int tt = 1; tt <= TT; tt++) {
+        for (int i = 1; i <= TT; i++) {
             input();
             pro();
         }
