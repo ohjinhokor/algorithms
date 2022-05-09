@@ -1,49 +1,54 @@
 import java.io.*;
 import java.util.*;
 
-public class TwoPointerBaekJoon1806 {
+public class TwoPointerBaekJoon16472 {
+    static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
-    static FastReader fastReader = new FastReader();
 
-    static int N;
-    static int S;
-
-    static int[] arr;
+    static int N, kind;
+    static String A;
+    static int[] cnt;
 
     static void input() {
-        N = fastReader.nextInt();
-        S = fastReader.nextInt();
+        N = scan.nextInt();
+        A = scan.nextLine();
+        cnt = new int[26];
+    }
 
-        arr = new int[N + 1];
-        for (int i = 1; i < N + 1; i++) {
-            arr[i] = fastReader.nextInt();
-        }
+    static void add(char x) {  // x 라는 알파벳 추가
+        cnt[x - 'a']++;
+        if (cnt[x - 'a'] == 1)  // 새롭게 나타난 알파벳이라는 뜻
+            kind++;
+    }
+
+    static void erase(char x) {  // x 라는 알파벳 제거
+        cnt[x - 'a']--;
+        if (cnt[x - 'a'] == 0)  // 인식해야 하는 알파벳에서 빠지는 순간
+            kind--;
     }
 
     static void pro() {
-        int result =S+1;
+        int len = A.length(), ans = 0;
+        for (int R = 0, L = 0; R < len; R++) {
+            // R 번째 문자를 오른쪽에 추가
+            add(A.charAt(R));
 
-        for (int startPoint = 1; startPoint< N+1; startPoint++) {
-            int count = 0;
-            int sum = 0;
-            for (int i = startPoint; i < N + 1; i++) {
-                sum = sum + arr[i];
-                count++;
-                if (sum > S) {
-                    if (result > count) {
-                        result = count;
-                    }
-                    continue;
-                }
+            // 불가능하면, 가능할 때까지 L을 이동
+            while (kind > N) {
+                erase(A.charAt(L++));
             }
+
+            // 정답 갱신
+            ans = Math.max(ans, R - L + 1);
         }
-        System.out.println(result);
+        System.out.println(ans);
     }
 
     public static void main(String[] args) {
         input();
         pro();
     }
+
 
     static class FastReader {
         BufferedReader br;
