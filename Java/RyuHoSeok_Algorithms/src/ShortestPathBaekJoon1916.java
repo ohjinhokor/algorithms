@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class ShortestPathBackJoon1916 {
+public class ShortestPathBaekJoon1916 {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
